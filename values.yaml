@@ -1,0 +1,46 @@
+grafana:
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+      - name: Prometheus
+        type: prometheus
+        url: http://prometheus-server.default.svc.cluster.local
+        access: proxy
+        isDefault: true
+        jsonData:
+          timeInterval: '5s'
+
+  # sidecar:
+  #   dashboards:
+  #     enabled: true
+  #     provider:
+  #       disableDelete: true
+  #       allowUiUpdates: false
+
+  dashboardProviders:
+    dashboardproviders.yaml:
+      apiVersion: 1
+      providers:
+      - name: 'default'
+        orgId: 1
+        folder: ''
+        type: file
+        disableDeletion: true
+        editable: true
+        options:
+          path: /var/lib/grafana/dashboards
+
+  dashboardsConfigMaps:
+    default: "grafana-dashboards"
+
+  env:
+    GF_AUTH_ANONYMOUS_ENABLED: true
+    GF_AUTH_ANONYMOUS_ORG_NAME: "Main Org."
+    GF_AUTH_ANONYMOUS_ORG_ROLE: "Viewer"
+    
+  service:
+    type: LoadBalancer
+    loadBalancerIP:
+    annotations:
+      metallb.universe.tf/allow-shared-ip: grafana
