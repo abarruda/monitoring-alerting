@@ -1,9 +1,11 @@
 ## Deployment
 ```
-helm dependency update
+helm dependency update 
 ```
 ```
-helm upgrade --install --debug --wait grafana .
+helm upgrade --install --debug --wait \
+--set grafana.service.loadBalancerIP=<some IP here> \
+grafana .
 ```
 
 ### Caveats
