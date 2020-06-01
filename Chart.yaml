@@ -1,6 +1,6 @@
 apiVersion: v2
-name: grafana
-description: A Helm chart for Kubernetes
+name: kubernetes-monitoring-alerting
+description: A Helm chart for Kubernetes monitoring using Prometheus and Grafana
 
 # A chart can be either an 'application' or a 'library' chart.
 #
