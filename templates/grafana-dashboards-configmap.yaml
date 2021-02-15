@@ -8,3 +8,4 @@ data:
   {{ (.Files.Glob "dashboards/pihole.json").AsConfig | nindent 2}}
   {{ (.Files.Glob "dashboards/kubernetes-node.json").AsConfig | nindent 2}}
   {{ (.Files.Glob "dashboards/deployments.json").AsConfig | nindent 2}}
+  {{ (.Files.Glob "dashboards/downloader.json").AsConfig | nindent 2}}
