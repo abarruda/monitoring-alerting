@@ -5,7 +5,7 @@ grafana:
       datasources:
       - name: Prometheus
         type: prometheus
-        url: http://prometheus-server.default.svc.cluster.local
+        url: http://monitoring-alerting-prometheus-server.default.svc.cluster.local
         access: proxy
         isDefault: true
         jsonData:
@@ -55,6 +55,8 @@ prometheus:
     service:
       type: LoadBalancer
       loadBalancerIP: 
+    persistentVolume:
+      enabled: false
   kubeStateMetrics:
     enabled: true
   kube-state-metrics:
@@ -75,15 +77,13 @@ prometheus:
       tag: v2.15.2
     service:
       type: LoadBalancer
-      loadBalancerIP: 
-
+      loadBalancerIP:
     persistentVolume:
       enabled: false
     retention: 14d
 
   alertmanagerFiles:
-    custom-templates.tmpl: |
-      {{ define "smtp_to" -}}email@email.dotcom{{- end}}
+    custom-templates.tmpl: "{{ define \"smtp_to\" -}}email@here{{- end}}"
 
     alertmanager.yml:
       global:
