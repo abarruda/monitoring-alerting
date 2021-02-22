@@ -42,9 +42,6 @@ grafana:
   service:
     type: LoadBalancer
     loadBalancerIP:
-    annotations:
-      metallb.universe.tf/allow-shared-ip: grafana
-
 
 prometheus:
   alertmanager:
@@ -199,11 +196,3 @@ prometheus:
               annotations:
                 summary: "Kubernetes Volume out of disk space (instance {{ $labels.instance }})"
                 description: "Volume is almost full (< 10% left)\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
-
-
-
-
-
-
-
-
