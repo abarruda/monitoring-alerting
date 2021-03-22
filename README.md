@@ -3,9 +3,17 @@
 helm dependency update 
 ```
 ```
-helm upgrade --install --debug --wait \
---set grafana.service.loadBalancerIP=<some IP here> \
-grafana .
+helm upgrade --install --debug \
+--set grafana.service.loadBalancerIP=192.168.1.123 \
+--set prometheus.server.retention=14d \
+--set prometheus.alertmanagerFiles."alertmanager\.yml".global.smtp_smarthost=smtp.host.com:26 \
+--set prometheus.alertmanagerFiles."alertmanager\.yml".global.smtp_from=alerts@host.com \
+--set prometheus.alertmanagerFiles."alertmanager\.yml".global.smtp_auth_username=alerts@host.com \
+--set prometheus.alertmanagerFiles."alertmanager\.yml".global.smtp_auth_password=pass123! \
+--set prometheus.alertmanagerFiles."custom-templates\.tmpl"="\{\{ define \"smtp_to\" \-\}\}email\@address.com\{\{\- end\}\}" \
+--set prometheus.alertmanager.service.loadBalancerIP=192.168.1.456 \
+--set prometheus.server.service.loadBalancerIP=192.168.1.789 \
+monitoring-alerting .
 ```
 
 ### Caveats
