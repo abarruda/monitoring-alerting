@@ -1,3 +1,6 @@
+# monitoring-alerting
+A Helm chart that deploys a Prometheus and Grafana stack to monitor a Kubernetes cluster.  Includes custom built dashboards and preconfigured alerts.
+
 ## Deployment
 
 ```bash
