@@ -54,6 +54,9 @@ prometheus:
       loadBalancerIP: 
     persistentVolume:
       enabled: false
+    resources:
+      limits:
+        memory: 64Mi
   kubeStateMetrics:
     enabled: true
   kube-state-metrics:
@@ -75,8 +78,13 @@ prometheus:
     service:
       type: LoadBalancer
       loadBalancerIP:
+    resources:
+      limits:
+        memory: 256Mi
     persistentVolume:
       enabled: false
+    emptyDir:
+      sizeLimit: 10Gi
     retention: 14d
 
   alertmanagerFiles:
