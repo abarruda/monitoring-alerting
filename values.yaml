@@ -80,7 +80,7 @@ prometheus:
       loadBalancerIP:
     resources:
       limits:
-        memory: 128Mi
+        memory: 256Mi
     persistentVolume:
       enabled: false
     emptyDir:

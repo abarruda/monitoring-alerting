@@ -1,6 +1,8 @@
 ## Deployment
-```
-helm dependency update 
+
+```bash
+$ helm repo add stable https://charts.helm.sh/stable
+$ helm dependency update 
 ```
 ```
 helm upgrade --install --debug \
