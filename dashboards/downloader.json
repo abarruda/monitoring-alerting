@@ -15,7 +15,6 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 4,
   "links": [],
   "panels": [
     {
@@ -60,7 +59,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(container_network_receive_bytes_total{pod=~\"downloader.*\",interface=\"tun0\"}[5m])",
+          "expr": "rate(container_network_receive_bytes_total{pod=~\".*downloader.*\",interface=\"tun0\"}[5m])",
           "hide": false,
           "legendFormat": "{{pod}} ({{instance}})",
           "refId": "A"
@@ -110,7 +109,7 @@
     {
       "datasource": null,
       "gridPos": {
-        "h": 8,
+        "h": 10,
         "w": 5,
         "x": 19,
         "y": 0
@@ -141,7 +140,7 @@
                 "value": 8000000
               }
             ],
-            "title": "Download Rate",
+            "title": "",
             "unit": "Bps"
           },
           "limit": 1,
@@ -155,9 +154,11 @@
       "pluginVersion": "6.5.2",
       "targets": [
         {
-          "expr": "rate(container_network_receive_bytes_total{pod=~\"downloader.*\",interface=\"tun0\"}[5m])",
-          "format": "table",
+          "expr": "rate(container_network_receive_bytes_total{pod=~\".*downloader.*\",interface=\"tun0\"}[5m])",
+          "format": "time_series",
           "instant": true,
+          "intervalFactor": 1,
+          "legendFormat": "{{pod}}",
           "refId": "A"
         }
       ],
@@ -168,7 +169,7 @@
     },
     {
       "aliasColors": {},
-      "bars": true,
+      "bars": false,
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
@@ -208,7 +209,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum by (pod) (rate(container_cpu_usage_seconds_total{namespace=\"default\",container=\"downloader\"}  [5m]))",
+          "expr": "sum by (pod) (rate(container_cpu_usage_seconds_total{pod=~\".*downloader.*\"}  [5m]))",
+          "instant": false,
+          "legendFormat": "{{pod}}",
           "refId": "A"
         }
       ],
@@ -295,7 +298,8 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "container_memory_usage_bytes{namespace=\"default\",container=\"downloader\"}",
+          "expr": "container_memory_usage_bytes{container=~\"ovpn-transmission|flexget\",pod=~\".*downloader.*\"}",
+          "legendFormat": "{{pod}} - {{container}}",
           "refId": "A"
         }
       ],
@@ -386,7 +390,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "rate(container_network_transmit_bytes_total{pod=~\"downloader.*\"}[5m])",
+          "expr": "rate(container_network_transmit_bytes_total{pod=~\".*downloader.*\"}[5m])",
           "hide": false,
           "legendFormat": "{{interface}} ({{pod}} on {{instance}})",
           "refId": "A"
@@ -442,7 +446,7 @@
     "list": []
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {
@@ -462,5 +466,5 @@
   "timezone": "",
   "title": "Downloader",
   "uid": "urRGIUkgz",
-  "version": 20
+  "version": 1
 }
