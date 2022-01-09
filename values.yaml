@@ -80,11 +80,11 @@ prometheus:
       loadBalancerIP:
     resources:
       limits:
-        memory: 256Mi
+        memory: 320Mi
     persistentVolume:
       enabled: false
     emptyDir:
-      sizeLimit: 10Gi
+      sizeLimit: 15Gi
     retention: 14d
 
   alertmanagerFiles:

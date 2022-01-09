@@ -475,7 +475,7 @@
       "type": "gauge"
     }
   ],
-  "refresh": "5s",
+  "refresh": "1m",
   "schemaVersion": 21,
   "style": "dark",
   "tags": [],
@@ -483,7 +483,7 @@
     "list": []
   },
   "time": {
-    "from": "now-3h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {
